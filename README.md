@@ -1,8 +1,10 @@
-# SungrowInverter
+# SungrowInverterOpenWRT
 
 Provides a way to query Sungrow residential hybrid or string inverters for current state and statistics using ModBus TCP client.
 
 Currently does not support any writing to holding registers.
+
+For OpenWRT the library `pycryptodomex` is available by [default](https://openwrt.org/packages/pkgdata/python3-cryptodomex).
 
 ## Supported Residental Inverters
 
