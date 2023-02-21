@@ -1,8 +1,24 @@
-# SungrowInverter
+# SungrowInverterOpenWRT
 
 Provides a way to query Sungrow residential hybrid or string inverters for current state and statistics using ModBus TCP client.
 
 Currently does not support any writing to holding registers.
+
+For OpenWRT the library `pycryptodomex` is available by [default](https://openwrt.org/packages/pkgdata/python3-cryptodomex).
+
+## For more than one version of the same library (for our case: pymodbus)
+
+`pip install pymodbus>=3.0.0 --target=/PATH/TO/deps/pymodbus`
+
+Invoke it on the code as:
+
+```
+>>> import os
+>>> import sys
+>>> sys.path.insert(1,os.path.abspath('/PATH/TO/deps/pymodbus'))
+```
+
+**Important note** refactor the code of the `/PATH/TO/deps/pymodbus` renaming `logging.py` to `pymodbus_logging.py` and replacing `from pymodbus.logging import Log` by `from pymodbus.pymodbus_logging import Log` to avoid circular reference problems.
 
 ## Supported Residental Inverters
 
