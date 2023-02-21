@@ -6,6 +6,9 @@
 #
 
 # Pymodbus >= 3.0 & Python >= 3.8
+import sys
+import os
+sys.path.insert(1,os.path.abspath('/enc/orchestra/deps/pymodbus'))
 from pymodbus.client import ModbusTcpClient
 
 # Pymodbus < 3.0 & Python < 3.7
