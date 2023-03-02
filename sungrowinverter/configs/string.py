@@ -20,7 +20,7 @@
 # Sungrow string inverter register definitions
 """
 
-from sungrowinverter.configs.common import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.common import (
     ModBusRegister,
     TEMP_CELSIUS,
     KILO_WATT_HOUR,

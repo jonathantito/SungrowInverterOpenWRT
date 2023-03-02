@@ -4,11 +4,25 @@ Provides a way to query Sungrow residential hybrid or string inverters for curre
 
 Currently does not support any writing to holding registers.
 
-For OpenWRT the library `pycryptodomex` is available by [default](https://openwrt.org/packages/pkgdata/python3-cryptodomex).
+It has been modified to run on OpenWRT because a `pip install` or `pip install git+forked_repo_modified` was unavailable on the OpenWRT device.
 
-## For more than one version of the same library (for our case: pymodbus)
+## Modification notes 
 
-`pip install pymodbus>=3.0.0 --target=/PATH/TO/deps/pymodbus`
+Original SungrowInverter repo was based on two dependencies: `pycryptodomex` and `pymodbus`.
+
+### PYCRYPTODOMEX
+
+For OpenWRT the library `pycryptodomex` is available by [default](https://openwrt.org/packages/pkgdata/python3-cryptodomex) with version `3.10.1`
+
+### PYMODBUS
+
+Pymodbus version is bounded to python version so we installed two versions of pymodbus, being the first one `pymodbus 2.5.3` by default on the image for the gateway and the second one `pymodbus 3.1.3`.
+
+*TODO*: update the entire code of orchestra-gateway to use an upadated version of pymodbus
+
+#### Installing the second version of PYMODBUS
+
+`pip install pymodbus==3.1.3 --target=/PATH/TO/deps/pymodbus`
 
 Invoke it on the code as:
 
@@ -18,7 +32,26 @@ Invoke it on the code as:
 >>> sys.path.insert(1,os.path.abspath('/PATH/TO/deps/pymodbus'))
 ```
 
-**Important note** refactor the code of the `/PATH/TO/deps/pymodbus` renaming `logging.py` to `pymodbus_logging.py` and replacing `from pymodbus.logging import Log` by `from pymodbus.pymodbus_logging import Log` to avoid circular reference problems.
+**Important note** refactor the code of the `/PATH/TO/deps/pymodbus` renaming `logging.py` to `pymodbus_logging.py` and replacing `from pymodbus.logging import Log` by `from pymodbus.pymodbus_logging import Log` to avoid circular reference problems. 
+
+**Modification is available on this repo directory `/.../orchestra-gw-app/gw-app/deps/pymodbus`**
+
+Finally modify `SungrowModbusTCPClient.py` as follows:
+
+```
+###### Code extract from SungrowModbusTCPClient.py ########
+
+# Pymodbus >= 3.0 & Python >= 3.8
+import sys
+import os
+sys.path.insert(1,os.path.abspath('/enc/orchestra/deps/pymodbus'))
+from pymodbus.client import ModbusTcpClient
+
+# Pymodbus < 3.0 & Python < 3.7
+# from pymodbus.client.sync import ModbusTcpClient
+```
+
+# SungrowInverter (original repo readme content)
 
 ## Supported Residental Inverters
 
@@ -59,9 +92,9 @@ SG40KTL-M, SG50KTL-M, SG60KTL-M, SG60KU
 If not called from within an async method
 
 ```python
-from sungrowinverter inport SungrowInverter
+from sungrowinverter import SungrowInverter
 import asyncio
-...
+
 
 client = SungrowInverter("192.168.1.27")
 
@@ -75,7 +108,7 @@ print(client.data)
 
 If called within an async method in your application
 ```
-from sungrowinverter inport SungrowInverter
+from sungrowinverter import SungrowInverter
 
 client = SungrowInverter("192.168.1.27")
 client.async_update()

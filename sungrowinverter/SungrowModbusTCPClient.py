@@ -8,7 +8,9 @@
 # Pymodbus >= 3.0 & Python >= 3.8
 import sys
 import os
-sys.path.insert(1,os.path.abspath('/enc/orchestra/deps/pymodbus'))
+#sys.path.insert(1,os.path.abspath('/enc/orchestra/deps/pymodbus'))
+print(sys.path[0]) # /root/orchestra-gateway/orchestra-gw-app/gw-app
+sys.path.append(os.path.join(sys.path[0],'deps','pymodbus'))
 from pymodbus.client import ModbusTcpClient
 
 # Pymodbus < 3.0 & Python < 3.7

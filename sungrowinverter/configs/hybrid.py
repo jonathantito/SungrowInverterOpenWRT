@@ -11,7 +11,7 @@
 # Sungrow hybrid inverter register definitions
 """
 
-from sungrowinverter.configs.common import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.common import (
     ModBusRegister,
     CalcRegister,
     OUTPUT_TYPE_CODES,

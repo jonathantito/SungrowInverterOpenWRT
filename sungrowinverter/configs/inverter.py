@@ -1,6 +1,6 @@
 """Sungrow inverter register definitions for the model, serial and nominal power output."""
 
-from sungrowinverter.configs.common import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.common import (
     ModBusRegister,
     SungrowInverterModel,
     KILO_WATT,

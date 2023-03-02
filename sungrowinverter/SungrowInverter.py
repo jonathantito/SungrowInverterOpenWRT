@@ -11,23 +11,23 @@ Refer configs/hybrid.py and configs/string.py for inverters that are supported.
 
 __version__ = "0.2.0"
 
-from sungrowinverter.SungrowModbusTCPClient import SungrowModbusTcpClient
-from sungrowinverter.configs.inverter import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.SungrowModbusTCPClient import SungrowModbusTcpClient
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.inverter import (
     INVERTER_SCAN,
     INVERTER_READ_REGISTERS,
     INVERTER_HOLDING_REGISTERS,
     INVERTER_MODELS,
 )
 
-from sungrowinverter.configs.common import SungrowInverterModel
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.common import SungrowInverterModel
 
-from sungrowinverter.configs.hybrid import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.hybrid import (
     HYBRID_SCAN,
     HYBRID_READ_REGISTERS,
     HYBRID_HOLDING_REGISTERS,
     HYBRID_CALCULATED_REGISTERS,
 )
-from sungrowinverter.configs.string import (
+from ext.SungrowInverterOpenWRT.sungrowinverter.configs.string import (
     STRING_SCAN,
     STRING_READ_REGISTERS,
     STRING_HOLDING_REGISTERS,
