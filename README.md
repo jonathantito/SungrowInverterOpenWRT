@@ -4,7 +4,7 @@ Provides a way to query Sungrow residential hybrid or string inverters for curre
 
 Currently does not support any writing to holding registers.
 
-It has been modified to run on OpenWRT because a `pip install` or `pip install git+forked_repo_modified` was unavailable on the OpenWRT device.
+**It has been modified to run on OpenWRT because a `pip install` or `pip install git+forked_repo_modified` was unavailable on the OpenWRT device.**
 
 ## Modification notes 
 
@@ -50,6 +50,23 @@ from pymodbus.client import ModbusTcpClient
 # Pymodbus < 3.0 & Python < 3.7
 # from pymodbus.client.sync import ModbusTcpClient
 ```
+
+#### GIT CLONE this repo to be used as part of the code of your OpenWRT develpment
+
+`git clone https://github.com/smilics/SungrowInverterOpenWRT.git`
+
+Rename the following two files to avoid git conflicts between your cloned repo and your OpenWRT development repo
+
+`mv .git .git.old`
+
+`mv .gitignore .gitignore.old`
+
+To work on modifications made to your cloned repo rename again:
+
+`mv .git.old .git`
+
+`mv .gitignore.old .gitignore`
+
 
 # SungrowInverter (original repo readme content)
 
